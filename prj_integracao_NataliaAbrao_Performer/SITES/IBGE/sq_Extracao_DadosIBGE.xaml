@@ -1,6 +1,5 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="wf_ExtracaoPopulacaoDensidade" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="arg_in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property Name="arg_outStrPopulacaoEstimada" Type="OutArgument(x:String)" />
     <x:Property Name="arg_outStrPopulacaoUltimo" Type="OutArgument(x:String)" />
     <x:Property Name="arg_outStrDensidade" Type="OutArgument(x:String)" />
@@ -8,11 +7,12 @@
     <x:Property Name="arg_outStrGentilico" Type="OutArgument(x:String)" />
     <x:Property Name="arg_outStrPrefeito" Type="OutArgument(x:String)" />
     <x:Property Name="arg_outStrCodCidade" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_inQiTransactionItem" Type="InArgument(ui:QueueItem)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1051,3660</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1053,5185</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>wf_ExtracaoPopulacaoDensidade_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="37">
@@ -88,15 +88,17 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="sq_Extracao_Dados_IBGE" sap:VirtualizedContainerService.HintSize="843,3595" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Extrai os dados da cidade no site do IBGE" DisplayName="sq_Extracao_DadosIBGE" sap:VirtualizedContainerService.HintSize="843,5120" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="var_strNomeCidade" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Assign DisplayName="Assign Cidade ToLower" sap:VirtualizedContainerService.HintSize="801,60" sap2010:WorkflowViewState.IdRef="Assign_1">
@@ -104,7 +106,7 @@
         <OutArgument x:TypeArguments="x:String">[var_strNomeCidade]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[arg_in_TransactionItem.SpecificContent("Cidade").ToString.ToLower]</InArgument>
+        <InArgument x:TypeArguments="x:String">[arg_inQiTransactionItem.SpecificContent("Cidade").ToString.ToLower]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign DisplayName="Assign Replace Acentos" sap:VirtualizedContainerService.HintSize="801,60" sap2010:WorkflowViewState.IdRef="Assign_2">
@@ -115,21 +117,13 @@
         <InArgument x:TypeArguments="x:String">[var_strNomeCidade.Replace(" ","-").Replace("ó","o").Replace("õ","o").Replace("á","a").Replace("ã","a").Replace("ç","c").Replace("í","i").Replace("â","a")]</InArgument>
       </Assign.Value>
     </Assign>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: IBGE | Cidades@ | Minas Gerais  | Panorama" sap:VirtualizedContainerService.HintSize="801,3303" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="Never" ScopeGuid="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: IBGE | Cidades@ | Minas Gerais  | Panorama" sap:VirtualizedContainerService.HintSize="801,4797" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="Never" ScopeGuid="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="sq_ExtracaoDados" sap:VirtualizedContainerService.HintSize="767,3087" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="var_strPopulacaoEstimada" />
-              <Variable x:TypeArguments="x:String" Name="var_strPopulacaoUltimo" />
-              <Variable x:TypeArguments="x:String" Name="var_strDensidade" />
-              <Variable x:TypeArguments="x:String" Name="var_strCodMunicipio" />
-              <Variable x:TypeArguments="x:String" Name="var_strGentilico" />
-              <Variable x:TypeArguments="x:String" Name="var_strPrefeito" />
-            </Sequence.Variables>
+          <Sequence DisplayName="sq_ExtracaoDados" sap:VirtualizedContainerService.HintSize="767,4541" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -139,7 +133,7 @@
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="var_strCodCidade" />
                 <Variable x:TypeArguments="x:Double" Name="var_dblPopulacao" />
-                <Variable x:TypeArguments="x:Boolean" Name="ddd" />
+                <Variable x:TypeArguments="x:String" Name="var_strPopulacaoEstimada" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -169,7 +163,7 @@
                   <InArgument x:TypeArguments="x:String">[Split(var_strPopulacaoEstimada," ")(0).Trim()]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign DisplayName="Assign Argumento Saida" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_6">
+              <Assign DisplayName="Assign Arg Saida População Estimada" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_6">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[arg_outStrPopulacaoEstimada]</OutArgument>
                 </Assign.To>
@@ -177,7 +171,7 @@
                   <InArgument x:TypeArguments="x:String">[var_strPopulacaoEstimada]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="683,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;População Estimada[2021]: &quot;+var_strPopulacaoEstimada]" />
+              <ui:LogMessage DisplayName="Log Message População Estimada" sap:VirtualizedContainerService.HintSize="683,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;População Estimada[2021]: &quot;+var_strPopulacaoEstimada]" />
               <Assign DisplayName="Assign Convert Double" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_27">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:Double">[var_dblPopulacao]</OutArgument>
@@ -218,12 +212,12 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Error" Message="[&quot;Erro ao classificar código da cidade&quot;]" />
+                    <ui:LogMessage DisplayName="Log Message Erro Código" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Error" Message="[&quot;Erro ao classificar código da cidade&quot;]" />
                     <Throw Exception="[new BusinessRuleException(&quot;Erro de Negocio&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Assign sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="Assign_12">
+                  <Assign DisplayName="Assign Arg Saida Cod Cidade" sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="Assign_12">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[arg_outStrCodCidade]</OutArgument>
                     </Assign.To>
@@ -234,10 +228,13 @@
                 </If.Else>
               </If>
             </Sequence>
-            <Sequence DisplayName="sq_PopulacaoUltimoCenso" sap:VirtualizedContainerService.HintSize="725,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="sq_PopulacaoUltimoCenso" sap:VirtualizedContainerService.HintSize="725,583" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="var_strPopulacaoUltimo" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -255,7 +252,7 @@
                   <OutArgument x:TypeArguments="x:String">[var_strPopulacaoUltimo]</OutArgument>
                 </uix:NGetText.Text>
               </uix:NGetText>
-              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign DisplayName="Assign População Ultimo Censo" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_4">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[var_strPopulacaoUltimo]</OutArgument>
                 </Assign.To>
@@ -263,8 +260,8 @@
                   <InArgument x:TypeArguments="x:String">[Split(var_strPopulacaoUltimo," ")(0)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;População Ultimo censo [2010]: &quot;+var_strPopulacaoUltimo]" />
-              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+              <ui:LogMessage DisplayName="Log Message População Ultimo Censo" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;População Ultimo censo [2010]: &quot;+var_strPopulacaoUltimo]" />
+              <Assign DisplayName="Assign Arg Saida População Ultimo" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_7">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[arg_outStrPopulacaoUltimo]</OutArgument>
                 </Assign.To>
@@ -273,10 +270,13 @@
                 </Assign.Value>
               </Assign>
             </Sequence>
-            <Sequence DisplayName="sq_Densidade" sap:VirtualizedContainerService.HintSize="725,66" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence DisplayName="sq_Densidade" sap:VirtualizedContainerService.HintSize="725,583" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="var_strDensidade" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -294,7 +294,7 @@
                   <OutArgument x:TypeArguments="x:String">[var_strDensidade]</OutArgument>
                 </uix:NGetText.Text>
               </uix:NGetText>
-              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign DisplayName="Assign Split" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_5">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[var_strDensidade]</OutArgument>
                 </Assign.To>
@@ -302,8 +302,8 @@
                   <InArgument x:TypeArguments="x:String">[Split(var_strDensidade," ")(0).Replace(",",".")]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Densidade demográfica [2010]: &quot;+var_strDensidade]" />
-              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_8">
+              <ui:LogMessage DisplayName="Log Message Densidade" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Densidade demográfica [2010]: &quot;+var_strDensidade]" />
+              <Assign DisplayName="Assign Arg Densidade" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_8">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[arg_outStrDensidade]</OutArgument>
                 </Assign.To>
@@ -312,10 +312,13 @@
                 </Assign.Value>
               </Assign>
             </Sequence>
-            <Sequence DisplayName="sq_CodMunicipio" sap:VirtualizedContainerService.HintSize="725,66" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="sq_CodMunicipio" sap:VirtualizedContainerService.HintSize="725,482" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="var_strCodMunicipio" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -333,8 +336,8 @@
                   <OutArgument x:TypeArguments="x:String">[var_strCodMunicipio]</OutArgument>
                 </uix:NGetText.Text>
               </uix:NGetText>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Código do Município: &quot;+var_strCodMunicipio]" />
-              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+              <ui:LogMessage DisplayName="Log Message Código Municipio" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Código do Município: &quot;+var_strCodMunicipio]" />
+              <Assign DisplayName="Assign Arg Cod Municipal" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_9">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[arg_outStrCodMunicipio]</OutArgument>
                 </Assign.To>
@@ -343,10 +346,13 @@
                 </Assign.Value>
               </Assign>
             </Sequence>
-            <Sequence DisplayName="sq_Gentilico" sap:VirtualizedContainerService.HintSize="376,579" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="sq_Gentilico" sap:VirtualizedContainerService.HintSize="725,583" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="var_strGentilico" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -364,7 +370,7 @@
                   <OutArgument x:TypeArguments="x:String">[var_strGentilico]</OutArgument>
                 </uix:NGetText.Text>
               </uix:NGetText>
-              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+              <Assign DisplayName="Assign Primeira Letra Maiuscula" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_21">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[var_strGentilico]</OutArgument>
                 </Assign.To>
@@ -372,8 +378,8 @@
                   <InArgument x:TypeArguments="x:String">[StrConv(var_strGentilico,VbStrConv.ProperCase)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Gentílico: &quot;+var_strGentilico]" />
-              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <ui:LogMessage DisplayName="Log Message Gentilico" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Gentílico: &quot;+var_strGentilico]" />
+              <Assign DisplayName="Assign Arg Saida Gentilico" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_10">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[arg_outStrGentilico]</OutArgument>
                 </Assign.To>
@@ -383,6 +389,9 @@
               </Assign>
             </Sequence>
             <Sequence DisplayName="sq_Prefeito" sap:VirtualizedContainerService.HintSize="725,583" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="var_strPrefeito" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -403,7 +412,7 @@
                   <OutArgument x:TypeArguments="x:String">[var_strPrefeito]</OutArgument>
                 </uix:NGetText.Text>
               </uix:NGetText>
-              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_20">
+              <Assign DisplayName="Assign Primeiras Letras Maiuscula" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_20">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[var_strPrefeito]</OutArgument>
                 </Assign.To>
@@ -411,8 +420,8 @@
                   <InArgument x:TypeArguments="x:String">[StrConv(var_strPrefeito.ToLower, VbStrConv.ProperCase)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Prefeito: &quot;+var_strPrefeito]" />
-              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <ui:LogMessage DisplayName="Log Message Prefeito" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Prefeito: &quot;+var_strPrefeito]" />
+              <Assign DisplayName="Assign Arg Saida Prefeito" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_11">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[arg_outStrPrefeito]</OutArgument>
                 </Assign.To>

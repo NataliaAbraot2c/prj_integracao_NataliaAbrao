@@ -1,14 +1,14 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="wf_PesquisaCidade" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="arg_in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="arg_inQiTransactionItem" Type="InArgument(ui:QueueItem)" />
   </x:Members>
-  <this:wf_PesquisaCidade.arg_in_TransactionItem>
+  <this:wf_PesquisaCidade.arg_inQiTransactionItem>
     <InArgument x:TypeArguments="ui:QueueItem" />
-  </this:wf_PesquisaCidade.arg_in_TransactionItem>
+  </this:wf_PesquisaCidade.arg_inQiTransactionItem>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1051,2435</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1053,2477</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>wf_PesquisaCidade_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="34">
@@ -81,10 +81,9 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="wf_PesquisaCidade" sap:VirtualizedContainerService.HintSize="993,2370" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Pesquisa a cidade no site do IBGE&#xD;&#xA;" DisplayName="sq_Pesquisa_CidadeIBGE" sap:VirtualizedContainerService.HintSize="951,2412" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="var_strNomeCidade" />
       <Variable x:TypeArguments="x:String" Name="var_strNomeCidadeOriginal" />
@@ -94,17 +93,18 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Assign Nome Cidade" sap:VirtualizedContainerService.HintSize="951,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Assign Nome Cidade" sap:VirtualizedContainerService.HintSize="909,60" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[var_strNomeCidadeOriginal]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[arg_in_TransactionItem.SpecificContent("Cidade").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String">[arg_inQiTransactionItem.SpecificContent("Cidade").ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="951,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Assign Tentativa" sap:VirtualizedContainerService.HintSize="909,60" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[var_intTentativas]</OutArgument>
       </Assign.To>
@@ -112,36 +112,36 @@
         <InArgument x:TypeArguments="x:Int32">0</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InterruptibleDoWhile Condition="[var_booSiteCarregou = false and var_intTentativas &lt;3]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="951,1606" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+    <ui:InterruptibleDoWhile Condition="[var_booSiteCarregou = false and var_intTentativas &lt;3]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="909,1606" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
       <ui:InterruptibleDoWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="915,1441" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="873,1441" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: https://cidades.ibge.gov.br" sap:VirtualizedContainerService.HintSize="873,1349" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="IfNotOpen" ScopeGuid="ada94a53-3685-46c4-9a37-0e665da956fd" Version="V1">
+          <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: https://cidades.ibge.gov.br" sap:VirtualizedContainerService.HintSize="831,1349" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="IfNotOpen" ScopeGuid="ada94a53-3685-46c4-9a37-0e665da956fd" Version="V1">
             <uix:NApplicationCard.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="sq_PesquisaCidade" sap:VirtualizedContainerService.HintSize="839,1133" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <Sequence DisplayName="sq_PesquisaCidade" sap:VirtualizedContainerService.HintSize="797,1133" sap2010:WorkflowViewState.IdRef="Sequence_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Assign Cidade ToLower" sap:VirtualizedContainerService.HintSize="797,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign DisplayName="Assign Cidade ToLower" sap:VirtualizedContainerService.HintSize="755,61" sap2010:WorkflowViewState.IdRef="Assign_1">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[var_strNomeCidade]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[arg_in_TransactionItem.SpecificContent("Cidade").ToString.ToLower]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[arg_inQiTransactionItem.SpecificContent("Cidade").ToString.ToLower]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Assign Replace Acentos" sap:VirtualizedContainerService.HintSize="797,61" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign DisplayName="Assign Replace Acentos" sap:VirtualizedContainerService.HintSize="755,61" sap2010:WorkflowViewState.IdRef="Assign_2">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[var_strNomeCidade]</OutArgument>
                     </Assign.To>
@@ -149,12 +149,12 @@
                       <InArgument x:TypeArguments="x:String">[var_strNomeCidade.Replace(" ","-").Replace("ó","o").Replace("õ","o").Replace("á","a").Replace("ã","a").Replace("ç","c").Replace("í","i").Replace("â","a").Replace("é","e").Replace("ê","e").Replace("ú","u")]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'cidades.ibge.gov.br'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="797,216" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="ada94a53-3685-46c4-9a37-0e665da956fd" Text="[&quot;https://cidades.ibge.gov.br/brasil/mg/&quot;+var_strNomeCidade+&quot;/panorama&quot; + &quot;[k(enter)]&quot;]" Version="V1">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'cidades.ibge.gov.br'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="755,216" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="ada94a53-3685-46c4-9a37-0e665da956fd" Text="[&quot;https://cidades.ibge.gov.br/brasil/mg/&quot;+var_strNomeCidade+&quot;/panorama&quot; + &quot;[k(enter)]&quot;]" Version="V1">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable DesignTimeRectangle="150, 48, 1602, 24" ElementType="InputBox" FriendlyName="'cidades.ibge.gov.br'" FullSelectorArgument="&lt;ctrl name='https://cidades.ibge.gov.br - Google Chrome' role='pane' /&gt;&lt;ctrl name='Google Chrome' role='pane' /&gt;&lt;ctrl name='Barra de endereço e de pesquisa' role='editable text' /&gt;" FuzzySelectorArgument="&lt;ctrl name='https://cidades.ibge.gov.br - Google Chrome' role='pane' /&gt;&lt;ctrl name='Google Chrome' role='pane' /&gt;&lt;ctrl name='Barra de endereço e de pesquisa' role='editable text' automationid='' /&gt;" Guid="22e073d1-b78f-4bc0-b27d-5b032a0364d6" ImageBase64="iVBORw0KGgoAAAANSUhEUgAABkYAAAAcCAYAAAA0jgNWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPpSURBVHhe7d3rbdswFAbQbtIW7aZF0FUM7REvYS/hCVSRel1StOKmRZNUh8ABIkt8XOcfP1D+9OXr9x4AAAAAAOAIBCMAAAAAAMBhCEYAAAAAAIDDEIwAAAAAAACHIRgBAAAAAAAOQzACAAAAAAAchmAEAAAAAAA4DMEIAAAAAABwGIIRAAAAAADgMB4KRp7Ot76/nfunxr3sx7m/9Zf+1Lr3gNM1Df+zee+35bXc+ucf43Ve+7XbPveB/Y81AQAAAADAv/B3Toy8p2CkIhgBAAAAAABmgpEPSDACAAAAAACvswlGUkixtins6C7Vq7S64c7aLucqGEnPh1aHHnljf27DuM91MFL0X1+LlRTra77eK61t+yqtYs46VIjzDWOeNsFDWe/9EOdn/xymuXTlWpJiHUNbxmqFS3cCpxdrmv5f6XtN7dKV/QEAAAAA4KiKYCSHDmGD/el8bgQjY0iwbrbPYcC6gX+61iHJep0382OgMYUSS0BQPV/MXaxjGKvrHgtG4vjTeu/Ol8OIoS3fQ13vNuwYVeMOxhCnXkuYqxh77B9DjHsnaR6rqRwLAAAAAACIwcje67B2wols91VaMUjYbv4nMQDYhgGpz9S/DjGaGsFIcfpjEGpohQ9Fn0a96X7dp/0dvFx7nKtc670A5uWamv8jAAAAAAAgBCN7m+nhXnNTvg4F5lMXS5s3+Nub/Ws4MYYHrbYECmktubVDg4eCkbS+XM+DYUWr7QUTi7iWO0FH0S89M32P6fN6jsl+TcPfzbUAAAAAAAB/58RI+mzuuxknBgKtIGL8LJ4YqYOKpjxPKxx5IBhZaijnnqU1LH3Ss3cCikL8DmbFGtshTD3+XP/e97BfU/U3AAAAAACwCL8xMm7cxw335m+M5M3+uGk/9ZtDgXpTPl2HoCKHDpv76aMpnMjX7YDm6XwJQUgIQIo+jWAkXI/31/WP98N8U33r91A+XyiCj/G5GLLkWjdribU1xk61XNO5kfhcGeC8VFMeQzACAAAAAAAbxY+vryHH1ObN9XqjfQ4Pcrv1z126njfyqzHyJn/cxJ8Dg6ldu3wdA4Vx4z+0uI7QiiBgmT+FBFUYcT0Xa2qeEJnbMNcp9wknMop6U5vGL4KR7XOXrlxLUte2DVy2AUszGNmrSTACAAAAAABNVTBCUgc1r5aDknjyAwAAAAAAeEuCkVo+fVKe8nid6eRM/VsgAAAAAADAmxGMVK/nen0oUr1CLDWhCAAAAAAAvCuCEQAAAAAA4DAEIwAAAAAAwGEIRgAAAAAAgMMQjAAAAAAAAIchGAEAAAAAAA5DMAIAAAAAwIfw+cs3+EPf+l8nOWNFbdaosAAAAABJRU5ErkJggg==" InformativeScreenshot="24a028ca8db1a5941e203e81559a7d31.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='https://cidades.ibge.gov.br - Google Chrome' /&gt;" SearchSteps="Selector, FuzzySelector, Image" />
                     </uix:NTypeInto.Target>
                   </uix:NTypeInto>
-                  <ui:UiElementExists DisplayName="Element Exists Pagina Cidade" Exists="[var_booSiteCarregou]" sap:VirtualizedContainerService.HintSize="797,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                  <ui:UiElementExists DisplayName="Element Exists Pagina Cidade" Exists="[var_booSiteCarregou]" sap:VirtualizedContainerService.HintSize="755,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
                     <ui:UiElementExists.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1c08ea83-14fe-4d75-ab48-f821cc1e154f" InformativeScreenshot="7c961a21e073c957ac3b6cb1f0a116b5" Selector="[String.Format(&quot;&lt;html app='chrome.exe' title='IBGE | Cidades@ | Minas Gerais | * | Panorama' /&gt;&lt;webctrl tag='H1' aaname='*{0}*' /&gt;&quot;, var_strNomeCidadeOriginal)]" TimeoutMS="5000">
                         <ui:Target.WaitForReady>
@@ -163,16 +163,9 @@
                       </ui:Target>
                     </ui:UiElementExists.Target>
                   </ui:UiElementExists>
-                  <If Condition="[var_booSiteCarregou]" DisplayName="Se página da cidade carregou" sap:VirtualizedContainerService.HintSize="797,435" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If Condition="[var_booSiteCarregou]" DisplayName="Se página da cidade carregou" sap:VirtualizedContainerService.HintSize="755,435" sap2010:WorkflowViewState.IdRef="If_1">
                     <If.Then>
-                      <Sequence sap:VirtualizedContainerService.HintSize="376,185" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Acesso a página da cidade com sucesso&quot;]" />
-                      </Sequence>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Acesso a página da cidade com sucesso&quot;]" />
                     </If.Then>
                     <If.Else>
                       <Sequence sap:VirtualizedContainerService.HintSize="376,276" sap2010:WorkflowViewState.IdRef="Sequence_8">
@@ -203,7 +196,7 @@
         </Sequence>
       </ui:InterruptibleDoWhile.Body>
     </ui:InterruptibleDoWhile>
-    <If Condition="[var_booSiteCarregou = False]" DisplayName="Se o site não carregou após 2 tentativas" sap:VirtualizedContainerService.HintSize="951,432" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[var_booSiteCarregou = False]" DisplayName="Se o site não carregou após 2 tentativas" sap:VirtualizedContainerService.HintSize="909,432" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
         <Sequence DisplayName="sq_ErroCarregarPagina" sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_9">
           <sap:WorkflowViewStateService.ViewState>
@@ -211,7 +204,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Error" Message="[&quot;Erro ao carregar Página da Cidade &quot;+var_strNomeCidadeOriginal]" />
+          <ui:LogMessage DisplayName="Log Message Erro" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Error" Message="[&quot;Erro ao carregar Página da Cidade &quot;+var_strNomeCidadeOriginal]" />
           <Throw DisplayName="Throw Erro Carregar Pagina" Exception="[new Exception(&quot;Erro de aplicação&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
         </Sequence>
       </If.Then>

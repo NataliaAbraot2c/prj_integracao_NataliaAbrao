@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="wf_OpenSiteIBGE" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1139,1901" sap2010:WorkflowViewState.IdRef="wf_OpenSiteIBGE_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="wf_OpenSiteIBGE" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1053,1963" sap2010:WorkflowViewState.IdRef="wf_OpenSiteIBGE_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="33">
       <x:String>System.Activities</x:String>
@@ -69,10 +69,9 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="wf_OpenSiteIBGE" sap:VirtualizedContainerService.HintSize="1002,1836" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Abre o site do IBGE" DisplayName="sq_OpenSiteIBGE" sap:VirtualizedContainerService.HintSize="960,1898" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="var_intTentativas" />
       <Variable x:TypeArguments="x:Boolean" Name="var_booSiteCarregou" />
@@ -80,9 +79,10 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Assign 0" sap:VirtualizedContainerService.HintSize="960,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Assign 0" sap:VirtualizedContainerService.HintSize="918,60" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[var_intTentativas]</OutArgument>
       </Assign.To>
@@ -90,46 +90,45 @@
         <InArgument x:TypeArguments="x:Int32">0</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InterruptibleDoWhile Condition="[var_booSiteCarregou = false and var_intTentativas &lt;3]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="960,1172" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+    <ui:InterruptibleDoWhile Condition="[var_booSiteCarregou = false and var_intTentativas &lt;3]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="918,1203" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
       <ui:InterruptibleDoWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="924,1007" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="882,1038" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uix:NApplicationCard AttachMode="SingleWindow" CloseMode="Never" DisplayName="Use Browser Chrome: https://cidades.ibge.gov.br" sap:VirtualizedContainerService.HintSize="882,915" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="IfNotOpen" ScopeGuid="213efa8c-a80a-4a47-9bbb-7f320b1a0e45" Version="V1" WindowResize="Maximize">
+          <uix:NApplicationCard AttachMode="SingleWindow" CloseMode="Never" DisplayName="Use Browser Chrome: https://cidades.ibge.gov.br" sap:VirtualizedContainerService.HintSize="840,946" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="IfNotOpen" ScopeGuid="213efa8c-a80a-4a47-9bbb-7f320b1a0e45" Version="V1" WindowResize="Maximize">
             <uix:NApplicationCard.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="848,699" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="806,730" sap2010:WorkflowViewState.IdRef="Sequence_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App Site Carregou" Exists="[var_booSiteCarregou]" sap:VirtualizedContainerService.HintSize="806,605" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="213efa8c-a80a-4a47-9bbb-7f320b1a0e45" Timeout="3" Version="V1">
+                  <uix:NCheckState DisplayName="Check App Site Carregou" Exists="[var_booSiteCarregou]" sap:VirtualizedContainerService.HintSize="764,636" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="213efa8c-a80a-4a47-9bbb-7f320b1a0e45" Timeout="3" Version="V1">
                     <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="sq_SiteCarregou" sap:VirtualizedContainerService.HintSize="376,185" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Site IBGE carregado com sucesso&quot;]" />
-                      </Sequence>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Site IBGE carregado com sucesso&quot;]" />
                     </uix:NCheckState.IfExists>
                     <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="sq_SiteNaoCarregou" sap:VirtualizedContainerService.HintSize="376,389" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence DisplayName="sq_SiteNaoCarregou" sap:VirtualizedContainerService.HintSize="376,420" sap2010:WorkflowViewState.IdRef="Sequence_6">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                         <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="Chrome" />
-                        <Delay DisplayName="Delay 3s" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                        <Delay sap2010:Annotation.AnnotationText="Tempo para finalizar processo" DisplayName="Delay 3s" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="334,53" sap2010:WorkflowViewState.IdRef="Delay_1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Delay>
                         <Assign DisplayName="Assign +1" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_3">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:Int32">[var_intTentativas]</OutArgument>
@@ -160,7 +159,7 @@
         </Sequence>
       </ui:InterruptibleDoWhile.Body>
     </ui:InterruptibleDoWhile>
-    <If Condition="[var_booSiteCarregou = False]" DisplayName="Se o site não carregou" sap:VirtualizedContainerService.HintSize="960,432" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[var_booSiteCarregou = False]" DisplayName="Se o site não carregou" sap:VirtualizedContainerService.HintSize="918,432" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>

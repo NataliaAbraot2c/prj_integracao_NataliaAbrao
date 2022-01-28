@@ -1,12 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="wf_AddItemFila" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="arg_in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="arg_in_TransactionItem" Type="InArgument(sd:DataRow)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="arg_inDicConfig" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="arg_inDrTransactionItem" Type="InArgument(sd:DataRow)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1178,837</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1046,837</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>wf_AddItemFila_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -65,26 +65,22 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Adiciona os itens da Tabela a fila no Orchestrador&#xD;&#xA;" DisplayName="wf_AddItemFila" sap:VirtualizedContainerService.HintSize="376,418" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Adiciona os itens da Tabela a fila no Orchestrador&#xA;" DisplayName="sq_Add_ItemFila" sap:VirtualizedContainerService.HintSize="376,418" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Cidade: &quot;+arg_in_TransactionItem.Item(0).ToString+&quot; CEP: &quot;+arg_in_TransactionItem.Item(1).ToString]" />
-    <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[arg_in_Config(&quot;Queue_InteracaoNataliaAbrao&quot;).ToString]" Reference="[&quot;Cidade: &quot;+arg_in_TransactionItem.Item(0).ToString]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Cidade: &quot;+arg_inDrTransactionItem.Item(0).ToString+&quot; CEP: &quot;+arg_inDrTransactionItem.Item(1).ToString]" />
+    <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[arg_inDicConfig(&quot;Queue_InteracaoNataliaAbrao&quot;).ToString]" Reference="[&quot;Cidade: &quot;+arg_inDrTransactionItem.Item(0).ToString]">
       <ui:AddQueueItem.ItemInformation>
-        <InArgument x:TypeArguments="x:String" x:Key="Cidade">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="arg_in_TransactionItem.Item(0).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="CEP">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="arg_in_TransactionItem.Item(1).ToString" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Cidade">[arg_inDrTransactionItem.Item(0).ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="CEP">[arg_inDrTransactionItem.Item(1).ToString]</InArgument>
       </ui:AddQueueItem.ItemInformation>
     </ui:AddQueueItem>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Item adicionado à fila&quot;]" />

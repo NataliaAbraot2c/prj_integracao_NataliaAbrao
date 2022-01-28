@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1046,837</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1053,837</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>sq_Import_BDSQL_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="34">
@@ -49,7 +49,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="19">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="38">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -69,16 +69,17 @@
       <AssemblyReference>UiPath.Database</AssemblyReference>
       <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="sq_Import_BDSQL" sap:VirtualizedContainerService.HintSize="452,650" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Envia para o BD SQL Server os Itens da Tabela" DisplayName="sq_Import_BDSQL" sap:VirtualizedContainerService.HintSize="452,681" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="sd:DataTable" Name="var_DtBancoDados" />
       <Variable x:TypeArguments="sd:DataTable" Name="var_dtCidades" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:ReadRange AddHeaders="True" DataTable="[var_dtCidades]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="410,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="Data\Cidades.xlsx">
@@ -105,7 +106,7 @@
                 <scg:Dictionary x:TypeArguments="x:String, Argument" />
               </ui:ExecuteNonQuery.Parameters>
             </ui:ExecuteNonQuery>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Cidade &quot;+CurrentRow(&quot;Cidade&quot;).ToString+&quot; adicionada no Banco de Dados&quot;]" />
+            <ui:LogMessage DisplayName="Log Message Cidade Add BD" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Cidade &quot;+CurrentRow(&quot;Cidade&quot;).ToString+&quot; adicionada no Banco de Dados&quot;]" />
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
