@@ -1,0 +1,198 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="wf_OpenCorreios" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1139,1961" sap2010:WorkflowViewState.IdRef="wf_OpenCorreios_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="35">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="64">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Abre o site dos correios" DisplayName="wf_OpenSiteCorreios" sap:VirtualizedContainerService.HintSize="1002,1896" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="var_booSiteAbriu" />
+      <Variable x:TypeArguments="x:Int32" Name="var_intTentativas" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="960,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[var_intTentativas]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InterruptibleDoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="960,1201" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+      <ui:InterruptibleDoWhile.Body>
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="924,1036" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard AttachMode="SingleWindow" CloseMode="Never" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="882,944" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" OpenMode="Always" ScopeGuid="6b5db74b-98d0-4b1c-907c-5417da11e77d" Version="V1" WindowResize="Maximize">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="sq_OpenCorreios" sap:VirtualizedContainerService.HintSize="848,728" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NCheckState sap2010:Annotation.AnnotationText="Confirma se o site foi aberto, senão abre novamente" DisplayName="Check Site Correios Chrome Carregado" Exists="[var_booSiteAbriu]" sap:VirtualizedContainerService.HintSize="806,635" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="6b5db74b-98d0-4b1c-907c-5417da11e77d" Timeout="3" Version="V1">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="sq_SiteAbriu" sap:VirtualizedContainerService.HintSize="376,185" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Site Correios carregado com sucesso&quot;]" />
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="sq_SiteNaoAbriu" sap:VirtualizedContainerService.HintSize="376,388" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="Chrome" />
+                        <Delay DisplayName="Delay 3s" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                        <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_4">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[var_intTentativas]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[var_intTentativas + 1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="https://buscacepinter.correios.com.br/app/endereco/index.php" DesignTimeRectangle="706, 234, 747, 26" FriendlyName="'Busca CEP'" FullSelectorArgument="&lt;webctrl tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H3' type='' aaname='Busca CEP' check:text='Busca CEP' /&gt;" Guid="8b148d07-b084-49e8-8da2-b1168f2d40cc" ImageBase64="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" InformativeScreenshot="1d0586b0dc9f97ddbe8328de75eccfd0.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Busca CEP' /&gt;" SearchSteps="FuzzySelector">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="706, 323, 429, 42" ElementType="InputBox" FriendlyName="'INPUT endereco'" FullSelectorArgument="&lt;webctrl tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAbEAAAAuCAYAAACmlyeTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALeSURBVHhe7dXNbdswGAZg79VbL0UTowvk0KKoU6BIgwIBcvUenkNzVGvEU6ikUwKMKslxmh9/8nN4EPNHJEWReRdnZ+cdsV39vOkuLj4PtvWtk3bbdGerzT/lqbZS3qbyavN7V96szrtmm3+vd+Wi3Vzu+jTr1Ke9S3WXu77r5v65Yqhuao5VbmvTWtZpTel3Hr/dpvH/rq8o85f+Zayiv642j5/GGOvfX9NYfb3Weu/q3+W5qbaxucbG2Lfusl9j6+uPVz87tY6p8etnyveon32pNddr66+zzDU1Zm7rn8mx87Jv3LG2oTn6/ev6qXes9yrvc7kPh4w31O8p32fsver1Pve7NKleiM3Ac4VYLm+bdTowd+kw5kv7sFz6tk2zq8vKocsXvdQ1uT4d6vry50NZ+hZDdVNzZA/mSWsqax+av4yXL0Bpy2OVC7rrm9bXtvdjjPXP9fmCbtNlLfX79qO0lUtYfvfbcrm/51NzjY2Ry/vWXQf+vvH6z46tY2z8oe/x0muuy0O/932nXB46k2Pn5THjDrUNzZE95bvX+7xJ/+TrtseMN9avzHXI95m6z7nPc77LJq2xhKwQm4FDQux/DF2Ax8jPbfLFT2E2VRfNU/eD43TomZz6/mNtczj3Q97yvYTYDBx7iM2V/ThtU9/f2Xg9QmwGhNjbsB+nTYgdByE2A68VYgDHRojNgBADTpUQmwEhBpwqITYDV9c33Zevq8E2gDkTYjOQQ+zb9x+7vwCnRIjNwNCHBTgFQgyAsIQYAGEJMQDCEmIAhCXEAAhLiAEQlhADICwhBkBYQgyAsIQYAGEJMQDCEmIAhLU4//CuA4CIFsuP7zsAiGixXH7qACAiIQZAWEIMgLCEGABhCTEAwhJiAIQlxAAIS4gBEJYQAyAsIQZAWEIMgLCEGABhCTEAwhJiAIQlxAAIS4gBENbi+tdtBwARCTEAwhJiAIQlxAAIS4gBENRt9wfnW8BSWrqpwwAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="8138b7db6d899376cba1a87a6101a315.png" Selector="&lt;html app='chrome.exe' title='Busca CEP'/&gt;" Url="https://buscacepinter.correios.com.br/app/endereco/index.php" />
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+        </Sequence>
+      </ui:InterruptibleDoWhile.Body>
+      <ui:InterruptibleDoWhile.Condition>
+        <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="var_booSiteAbriu = false and var_intTentativas &lt;3" />
+      </ui:InterruptibleDoWhile.Condition>
+    </ui:InterruptibleDoWhile>
+    <If Condition="[var_booSiteAbriu = false]" DisplayName="Se o site não abriu" sap:VirtualizedContainerService.HintSize="960,432" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Erro ao carregar Site dos Correios&quot;]" />
+          <Throw Exception="[new Exception(&quot;Erro de aplicação&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>
