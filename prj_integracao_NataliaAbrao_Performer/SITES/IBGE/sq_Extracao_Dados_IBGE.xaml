@@ -1,0 +1,432 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="wf_ExtracaoPopulacaoDensidade" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="arg_in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="arg_outStrPopulacaoEstimada" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrPopulacaoUltimo" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrDensidade" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrCodMunicipio" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrGentilico" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrPrefeito" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrCodCidade" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1051,3660</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>wf_ExtracaoPopulacaoDensidade_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="37">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="62">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="sq_Extracao_Dados_IBGE" sap:VirtualizedContainerService.HintSize="843,3595" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="var_strNomeCidade" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="Assign Cidade ToLower" sap:VirtualizedContainerService.HintSize="801,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[var_strNomeCidade]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[arg_in_TransactionItem.SpecificContent("Cidade").ToString.ToLower]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign Replace Acentos" sap:VirtualizedContainerService.HintSize="801,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[var_strNomeCidade]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[var_strNomeCidade.Replace(" ","-").Replace("ó","o").Replace("õ","o").Replace("á","a").Replace("ã","a").Replace("ç","c").Replace("í","i").Replace("â","a")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: IBGE | Cidades@ | Minas Gerais  | Panorama" sap:VirtualizedContainerService.HintSize="801,3303" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="Never" ScopeGuid="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="sq_ExtracaoDados" sap:VirtualizedContainerService.HintSize="767,3087" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="var_strPopulacaoEstimada" />
+              <Variable x:TypeArguments="x:String" Name="var_strPopulacaoUltimo" />
+              <Variable x:TypeArguments="x:String" Name="var_strDensidade" />
+              <Variable x:TypeArguments="x:String" Name="var_strCodMunicipio" />
+              <Variable x:TypeArguments="x:String" Name="var_strGentilico" />
+              <Variable x:TypeArguments="x:String" Name="var_strPrefeito" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="sq_PopulacaoEstimada" sap:VirtualizedContainerService.HintSize="725,1433" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="var_strCodCidade" />
+                <Variable x:TypeArguments="x:Double" Name="var_dblPopulacao" />
+                <Variable x:TypeArguments="x:Boolean" Name="ddd" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NGetText DisplayName="Get Text População estimada" sap:VirtualizedContainerService.HintSize="683,156" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/ouro-fino/panorama" DesignTimeRectangle="659, 368, 189, 28" FriendlyName="'33.938 pessoas'" FullSelectorArgument="&lt;webctrl parentid='dados' tag='DIV' aaname=' *' parentclass='lista__valor' title='IBGE | Cidades@ | Minas Gerais | * | Panorama' idx='1' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' aaname='                                                              ' /&gt;" Guid="3d135ab2-a8c2-48de-ba1e-b4ebbf60ab6c" InformativeScreenshot="9c6664f328030860a47c3fc02f35c791.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Cidades@ | Minas Gerais | * | Panorama' /&gt;" SearchSteps="FuzzySelector">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="323, 368, 336, 28" FriendlyName="'População estimada'" FullSelectorArgument="&lt;webctrl parentid='dados' tag='DIV' aaname='*' parentclass='lista__valor' title='IBGE | Cidades@ | Minas Gerais | * | Panorama' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' aaname='                                          População estimada                                                           ' check:text='População estimada&amp;#xD;&amp;#xA;                    [2021]' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAVQAAAAgCAYAAABNVoDWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQ+SURBVHhe7ZpbUttAEEW1PlexHMorMRvxOqjyX5INaBtkbsJNLs1ImGhMsDkfp8JoXj0t+lgymU6n0xMAAGwHoQIADGKa5/kJAAC2g1ABAAaBUAEABoFQAQAGgVABAAaBUAEABoFQAQAGgVABAAaBUAEABrEq1GNjmvaN6QWHu6n1n16NH8X+2Gj7zPPxVd+5aA3Ferxv8T7OLeZdu365mJfQ3rup7f146PaPwPdpPjZK3xrT/fHF/dw9nP7cY1HX8/japzNO7YzuU85zntH804Puw8s5740b4LNyllDzF/6ka3eHxaIZwVahKsZdi1ESsyRcyB+B9rSkPrtQnZeac7V3aj/Hnf35c93b7Zpvyziv+3cJocKt8G6hiq3Ce4tLr39pUqi9/tGMEGqlrqmx/hB9S4Q51uvsWz6mu5eiRahwawwRar4qpkhUWIdWWCoa9eWcukY+ydU+tb2+yKLMV8d8onKxek4VtJ+YxNrTtnPgsZmLXMPnzlh17fDYXqWfz+Uz7h/+xqWzZP7ybLl+nk3kPnvlOO7TWr4Srb/Ul/feufTY2q5o3RTqfGz76HqZg1Dh1tj8yp/yq30WguerneI5R6iKYacYnmVS+6pI3CdJOY5azPkE6TV6cqjzaoz1w6O3fs6x/DN3KTzNc/y99VNSeW4LWe21fKmdZMyVjKUnvqW5PmOOFTWXea2OBbhWNv9RKgtdZAGrL8cuSfOtvqRKZ2lcktLsFXYKMOcppr1iivUtEu1tibnP5Hp5rvxZ42p76TyOOUWc46pgk8xX7VuSYj3buUJ1HPn7YBAqfAX+6ZXf9Ioki73KVuv56alKYUmo3sMy3901mT33LYlQWAq/5ujfNk9x9s60tE6ukaTY8rrXHCFU9eVXGYrf+9Z4U0xr+dLYpCdFnynzU+9z776vyVT05mTcORbgWtkkVFGlmVJQXxb+kjTX+uq4tT6zJoBeYS8JVTHVJ9QltIZjGSHUmtds13PnfVrLl9pJFarG1u9qTY6tIvT+uVall/e6DsC1s1moWbAuEBe+ijALVO0UTX7XJgl5bK6ZRe713Vfjs6BObWzGoTX01OViTuGtyaBKIMdWCWsPt0cJtebK56kx+3zKw1q+NDZJSXqPpXudseXP9Z4vUXOZ19Z+vwCuic1CFRKIXzFTMipY/wVafbWw1f9nniSlvZoIegWrMRLF4Xh4JSW/GgvHaskIFbv2yqLPvddk4Bz0xuYa+cHhmHSGw6M+VH7Hq+vnCjXPpZzuHl4/7bvf/yVJZ38rX4nit+DyHiYpwDyv85xxJBmrQKjwFVgV6laqxC6FRJSFCueRQv0fIFS4NW5CqEJPWEj1fSBUgLFcvVD9ypmv3HAeuj+91/OPIL8qQKhwK1xUqAAAXwmECgAwCIQKADAIhAoAMAiECgAwCIQKADCI6cf3b08AALAdnlABAIYwP/0EfmRylp/KpVYAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[var_strPopulacaoEstimada]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+              <Assign DisplayName="Assign Split População" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_3">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[var_strPopulacaoEstimada]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[Split(var_strPopulacaoEstimada," ")(0).Trim()]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign Argumento Saida" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_6">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[arg_outStrPopulacaoEstimada]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[var_strPopulacaoEstimada]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="683,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;População Estimada[2021]: &quot;+var_strPopulacaoEstimada]" />
+              <Assign DisplayName="Assign Convert Double" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_27">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Double">[var_dblPopulacao]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(var_strPopulacaoEstimada)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign Código 1" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_29">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[var_strCodCidade]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[IF( var_dblPopulacao &lt;15.000,“1”,Nothing)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign Código 2" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_23">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[var_strCodCidade]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[IF(var_strCodCidade = "1", "1", IF(var_dblPopulacao &gt; 15.001 and var_dblPopulacao &lt;30.000,“2”,Nothing))]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign Código 3" sap:VirtualizedContainerService.HintSize="683,61" sap2010:WorkflowViewState.IdRef="Assign_28">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[var_strCodCidade]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[IF(var_strCodCidade = "2", "2", IF(var_strCodCidade = "1", "1", IF(var_dblPopulacao &gt; 30.001,“3”,Nothing)))]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <If Condition="[var_strCodCidade = Nothing]" DisplayName="Se o Cód Cidade esta vazio" sap:VirtualizedContainerService.HintSize="683,406" sap2010:WorkflowViewState.IdRef="If_1">
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,247" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Error" Message="[&quot;Erro ao classificar código da cidade&quot;]" />
+                    <Throw Exception="[new BusinessRuleException(&quot;Erro de Negocio&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Assign sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="Assign_12">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[arg_outStrCodCidade]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[var_strCodCidade]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </If.Else>
+              </If>
+            </Sequence>
+            <Sequence DisplayName="sq_PopulacaoUltimoCenso" sap:VirtualizedContainerService.HintSize="725,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NGetText DisplayName="Get Text População ultimo censo" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="664, 402, 179, 18" FriendlyName="'7.971 pessoas'" FullSelectorArgument="&lt;ctrl name='IBGE | Cidades@ | Minas Gerais | * | Panorama' role='document' /&gt;&lt;ctrl idx='27' role='row' /&gt;&lt;ctrl name='*' role='cell' /&gt;&lt;ctrl role='grouping' /&gt;" FuzzySelectorArgument="&lt;ctrl name='IBGE | Cidades@ | Minas Gerais | Delfim Moreira | Panorama' role='document' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='7.971 pessoas  ' role='cell' /&gt;&lt;ctrl role='grouping' automationid='' /&gt;" Guid="5cc15d8c-ca3c-4c35-b47c-a104b4a6e620" InformativeScreenshot="9e2c6bf1c281794760e13ec769478604.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='IBGE | Cidades@ | Minas Gerais | * | Panorama - Goo*' /&gt;" SearchSteps="FuzzySelector" SelectionStrategy="AA">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="322, 397, 338, 28" ElementType="Cell" FriendlyName="'População no'" FullSelectorArgument="&lt;ctrl name='IBGE | Cidades@ | Minas Gerais | * | Panorama' role='document' /&gt;&lt;ctrl idx='27' role='row' /&gt;&lt;ctrl name='População no último censo [2010]' role='cell' /&gt;" FuzzySelectorArgument="&lt;ctrl name='IBGE | Cidades@ | Minas Gerais | * | Panorama' role='document' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='População no último censo [2010]' role='cell' automationid='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAVYAAAAgCAYAAABJo1DrAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAS3SURBVHhe7ZlRUuMwEER9PldxHConyV7E56Aqf8AFco2sOkWznUZSgqMsBPrj1VqWPJoZzzRydtrv94cQQgjjmF5fng8hhBDGkRNrCCEMJsIaQgiDibCGEMJgIqwhhDCYCGsIIQwmwhpCCIOJsIYQwmAirCGEMJgIawghDOassC6FadoUphO2D1OZ331YP4rNUij77PfLh7lLgQ34ujwWf5/2xee53L+dz5cCv2bE9rQ9juHbPBXf3sZkV5getofdH/h9auMnw7j57nBvelzea09zB5C/qeSvV5dYs0GOpZ60trXWWDe+TwiXcrGw7pfC2z0WPov+FlwrrPBxLj6iMeY/u2OjfAeBUr94T4VVr3+7sLLm8P5UMDFmbWiOWvmi8Ho9QaxVuLWeUfcz6j7CGlawSljBiBNlj1vb/060hLW29jfgwur08oW6cRE+nkgfNyf15HUNO3qijbCGaxgmrCxgoIWNk8C2nATQKMcCl2fchjaJz2FM+0BPJXiOn4L6+cYG5TNqD+jnZev0TZ/m0pi1tcwP51pi0IuV10u5pi3EscPYTmPbcs01yPP2CXn/+BncykmN1rtr2TiXE82r2gOtvZTPCGutTnS8LLBfTrid/NfGEdZwDUN+CtCi9Tk2GZ8/Cu1bQ/WKXee8yH1O/dM5NDH9oF8UZMzRD9rwT0gAnyAutMMx9nOb2LslYr1YW9dqn9ceN2NQvzwniFX3VtwvvB/E2ssr96rlBOtUMGFP80MbXicK57i34zWk+8EX/y0VeJy+DvFqjfk4hM8w5D+v2Ix8RotYmwBzKOiaeJ6bU1QoeusUxqEipUKqQqvPqU8Yq+D4XM0u6cXaulZ7btvH6pfvpXMYK/7uCGxoPrhfLW7fW/+QKr064T2ge+l9gPekf7zcT/gWYQ1fzeqfAog3ONAi9mbSgq0VOxtW57gHRX1++PcfES1BBLDx/gz+Lc/Bz1pMa4TV/a/lgvRibV2rPbftY/XLY2m9w56/sMHcKVjbywnGmneA+7W9PCeEa91fF1XgNlo2e/mvjRFThDWs5WphBbc+sfq63hzpCVGtydcIq8/V7JJerK3rns8+Vr98r947vPTEqvRy4muRV/pyzYlV7fAegC968mz5XcuJCqfb8fkQPsMQYdWiZVOwgdBMespQoUUx87c5zOmJRG3imvdpn3PuH5ue//FDP2CDJy7uRT9ooyaIPRFxcVM/1Qboxap76LXa9718rH55TlqiBDTPGDMvS8mL55X+93KieaV9jnUv+l8Tdc5x715eezlSPE6gQu+ij5girGEtQ4QVoKH46aeNhYLdlIKFDczVivv9udIQtZ8J2DBYgwbbLtuTxmbT0442JO+habx5dO9ag4OeiOiYdnp5asVaE1Os2RVbLdHwsfulOWmJEtF3p+/H88q9zuVE4/S9W3WiMLaaPaUWa8tmTVj13dXmIqxhLWeF9VpczG4FGqd2Ugn3hwvrVxBhDdfwY4QV4DQUcb1/Iqzh3vkRwspPwXOfvOE+oLDiE/1//VFW+BNS6ims5ebCGkIIv40IawghDCbCGkIIg4mwhhDCYCKsIYQwmAhrCCEMZnp9eT6EEEIYR06sIYQwlP3hL9TEE9ZV1eW9AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[var_strPopulacaoUltimo]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[var_strPopulacaoUltimo]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[Split(var_strPopulacaoUltimo," ")(0)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;População Ultimo censo [2010]: &quot;+var_strPopulacaoUltimo]" />
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[arg_outStrPopulacaoUltimo]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[var_strPopulacaoUltimo]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <Sequence DisplayName="sq_Densidade" sap:VirtualizedContainerService.HintSize="725,66" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NGetText DisplayName="Get Text Densidade" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="664, 431, 179, 18" FriendlyName="'19,51 hab/km²'" FullSelectorArgument="&lt;ctrl name='IBGE | Cidades@ | Minas Gerais | Delfim Moreira | Panorama' role='document' /&gt;&lt;ctrl idx='29' role='row' /&gt;&lt;ctrl name='19,51 hab/km²  ' role='cell' /&gt;&lt;ctrl role='grouping' /&gt;" FuzzySelectorArgument="&lt;ctrl name='IBGE | Cidades@ | Minas Gerais | Delfim Moreira | Panorama' role='document' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='19,51 hab/km²  ' role='cell' /&gt;&lt;ctrl role='grouping' automationid='' /&gt;" Guid="b9291fdb-5a28-4ef6-8f1d-5d83fc62b9a7" InformativeScreenshot="fd1e369a1412b052353f7dcd3741372c.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='IBGE | Cidades@ | Minas Gerais | Delfim Moreira | Panorama - Goo*' /&gt;" SearchSteps="FuzzySelector" SelectionStrategy="AA">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="322, 426, 338, 28" ElementType="Cell" FriendlyName="'Densidade demográfica'" FullSelectorArgument="&lt;ctrl name='IBGE | Cidades@ | Minas Gerais | Delfim Moreira | Panorama' role='document' /&gt;&lt;ctrl idx='29' role='row' /&gt;&lt;ctrl name='Densidade demográfica [2010]' role='cell' /&gt;" FuzzySelectorArgument="&lt;ctrl name='IBGE | Cidades@ | Minas Gerais | Delfim Moreira | Panorama' role='document' /&gt;&lt;ctrl role='row' /&gt;&lt;ctrl name='Densidade demográfica [2010]' role='cell' automationid='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAVYAAAAgCAYAAABJo1DrAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASeSURBVHhe7ZrdbeMwEIRVn4F0cq+GK3EaURsO4LckDagNHyfx2JPNkhJ0jO3g5uHDmVpyl387IpUbpmk6GWOM6cfw/vZ6MsYY0w+fWI0xpjMWVmOM6YyF1RhjOmNhNcaYzlhYjTGmMxZWY4zpjIXVGGM6Y2E1xpjOWFiNMaYzs8I6FoZhVxi+sH8aiv34rX4vdmOhxJmm8ZuNfZrGQrC1OBaGp/3p+LxJ7UtZG//W7F/QzzJW6aeu55/tpjrHa8Cawe8GPl/2l/jcM+MWsa71h+14sdXmEnXiem2ej5d2tHFtszjG3JrFwqobn5v4J8XVwvrvQJRiHyFKXLfWHK8B/ug7zhHLnHuNXesHhVfXC2K9wcviLNz8TTvGZ2E192aVsLae34K1sf83Yc34SeFRYc3sEErG1t9clyjCu+JreLqKMdAXA/1Eu4XV3JvVwpqJFE8Yeh1jvV25dvJaqKeTeF1knHiKQZl1dsW39kltIJ5wLnFDonJsbNcSylZ8jcFrMJ/jRLV7/ryiAsRG8muZMfR5FKha/I95Oo9r7gqu/jG3u7GcFsu/03mOa/Fr/iLoyxJhjXsnlrEuU+lbbY9p/Fi2sJpHYLWwAt3U2NBMKk2Ii7CeE5hlTTAVqF1JYNT7EIxzm9gHCgDKsG1gO4uZtouJCRvaab9oowjqtZLMxVebxqcgcY40Pv2wbtZvtmvFp0/asjnVcek6aUz9jXpRBGv+FPioCSvnAn6iT4B4nBcS1yirh/FwnrKyMfegi7BmicIkO5Yky5JD22XJ2Er6Vp9UrKIIaKLCRhFn2yy5QSt+FBOdixg/ltUv5wTPo20uvtoisOspuiasMX6N6C/asrVkf+k/2y/Z3Ot61epZWM0j0uVTAOvg5KQgaY9I2iQ5YpKxTZb0KgbaBn2K7TdP1790qw+0A0xM2NhGyZKyFR+2zA9iLBXWbI5a458TVoyR/diUdhpTfbXiKy1/CvxpP0EUVcD5Y7xYrtUDuneyMsaXraExt2S1sEIkWlc7siQ5CGOhrgpGFI+WsGg5Cpn2BbZ4Yq0xFz+KCVkqrFPxG+dEbXPx1TYXMxNWtK2tyZw/Bf6yF0AUTIB4fF7bP9neicKpfjK7MfdglbByw2sSacKijA2PcutTQPStCaZJHxMUNpyeWI9XU7ZnO5aZaBAFvAzgJyZtSwRa8eMYGAPlOVHSMerv2O8YA3Ot42c72DQ+ypjrJZ8Coh/W278gVt2fAh/0HceQ1a3FJnGNgM5hnE9gYTWPwGJh5VWQZJsXSUc7EyVLDgorflMIot+YbFqPfwVHstM/niPh9+P+S7Jp/+Fv2F4FMo6tlZC1+NEG6D8mfixnYkYf+pJi3Yut+KfQZqKk6zCWOlGUM2Glje30ecufAn/0HeeE6LjUb+Yv2ztA+5nZLKzm3swKq3k88ELQ/wnxKKiwZvZbYGE1j4CF9ReA059+D4Z4xFPqI2BhNeYTC+svQa/NtW+c9wbCeq/+6SchC6u5NxZWY4zpjIXVGGM6Y2E1xpjOWFiNMaYzFlZjjOmMhdUYYzozvL+9nowxxvRjOBwOJ2OMMb04nP4C7hHJcmUDwmQAAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[var_strDensidade]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[var_strDensidade]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[Split(var_strDensidade," ")(0).Replace(",",".")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Densidade demográfica [2010]: &quot;+var_strDensidade]" />
+              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_8">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[arg_outStrDensidade]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[var_strDensidade]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <Sequence DisplayName="sq_CodMunicipio" sap:VirtualizedContainerService.HintSize="725,66" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NGetText DisplayName="Get Text Cod Municipio" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NGetText_4" ScopeIdentifier="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/delfim-moreira/panorama" DesignTimeRectangle="273, 238, 274, 16" ElementType="Text" FriendlyName="'3121100'" FullSelectorArgument="&lt;webctrl parentid='dados' tag='P' aaname='*' class='topo__valor' idx='1' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='dados' tag='P' type='' /&gt;" Guid="9f8fe94d-ed31-4e09-89e3-3245b9bafc32" InformativeScreenshot="2d6d1215836b1d7c7e6423bbbfd9ca05.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Cidades@ | Minas Gerais | Delfim Moreira | Panorama' /&gt;" SearchSteps="FuzzySelector">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="273, 222, 274, 16" FriendlyName="'Código do Município'" FullSelectorArgument="&lt;webctrl tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H3' type='' aaname='                 Código do Município             ' check:text='Código do Município' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAARYAAAAUCAYAAABI8hLwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANTSURBVHhe7ZlNbuJAEIXnJBzN1+AElrjCSCyQZh2x95bN7BHKDXwNph7DI0VRdtvYiUn0Fp+Uprqrf9zvUSa/2rY9CyHEnMhYhBCzI2MRQsyOjEUIMTuTjOVorDbNebf5be33h7j4XOqDnf/azv7wlsaFWIoHY6FZ4MKS4/7PXR+yOxkbxPpNpTFWa7v8VwFU+/cvNaPV9u+52WK+PN4H9rha2x47xFuKjwX5KuQ7NWncg30NnTc+AyE+kztjoUi8kfBCZsI8Wv8h5rD0pZ5qLBB6BQMNYue+lqga8AXQnlQlitfkZiysVLLqJPsWZRkOKggriA5VCeO1ibqvYoHw2Xdn80cTKs0VoUFe5sa47b0xekMAXRUZ4N7r/ePZYF1xb9lZeWNDvIZRWT7O788ijvd7iWtFXraxp8rWsTsg7//+Pm9m7nfPyGhbq4CuMSGmcDOWTBBdQFBe4LGNC+svKo0jM5ZS39JcEQrRj0c+CpsC84L07QjPpbH5dhvk/KgSLoZh84w1Fqyvaz1+fDSD2I7Gglg8S55zHBvPPbaFmMLNWCDAIRerq7KheLJ4dqlx4Y924dGXnwNvDKW5/GfEmxY/8/2zeN/evdAry0PDwJ5q21NjY/zehhjL0Hi2Vg/GRWOJZ5mZVNa3r2IVYiyjjSW7lAAigDj6Li0/o2AaEwzKdy+ykgA4vstYMtPx/bM4BIjXk5Kx4IwoPPyd7XeMcZTi2Vo9iHtjGXqW2RqAzyfEFEa/CpXEnsV/irFgPahS0A95sjVm5+jnHBPP1upBXMYiXpFBP976S1l6PcniUXw0lu/2KoT2JZetjQYT9zbGOErxbK0ejOPZxHUAn8vHs759z1+IsdyMBeAiQtSZKfgLDiH2/aAahQoBfNWPt1E06D/Hj7d+/iwf54v5eKbPGEvMHcWfGYt/Tj5vzBXPPbaFmMKdsQBeQIiHZKKjwEAmdFxUxuO/kL2xoE0zYd9Y0pfmilDMl3w2z2prIr0KDMQ9dpkKiEYQBRrbwK8X81f75yoWtrkX4PeRGUu9/diXP+Nsnf4ZyVTEnDwYy9JAANFYRJnMOIRYikWNJXuvj9WMGIaMRbwSi1cssdSXqTyHjEW8Ei/3KiSE+P7IWIQQM9Oe/wEIsfSaQ77ZWgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[var_strCodMunicipio]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Código do Município: &quot;+var_strCodMunicipio]" />
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[arg_outStrCodMunicipio]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[var_strCodMunicipio]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <Sequence DisplayName="sq_Gentilico" sap:VirtualizedContainerService.HintSize="376,579" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NGetText DisplayName="Get Text Gentilico" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NGetText_5" ScopeIdentifier="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/divisa-nova/panorama" DesignTimeRectangle="559, 238, 274, 16" ElementType="Text" FriendlyName="'divisa-novense'" FullSelectorArgument="&lt;webctrl parentid='dados' tag='P' aaname='*' class='topo__valor' parentclass='topo__celula-direita' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='dados' tag='P' /&gt;" Guid="cdf7f6f0-7e2d-40c3-b625-aad517a64867" InformativeScreenshot="b861e2f9b102c13d2f99dfab6cfe586f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Cidades@ | Minas Gerais | * | Panorama' /&gt;" SearchSteps="FuzzySelector">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="559, 222, 274, 16" FriendlyName="'Gentílico'" FullSelectorArgument="&lt;webctrl idx='2' tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H3' aaname='                 Gentílico             ' check:text='Gentílico' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAARYAAAAUCAYAAABI8hLwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHTSURBVHhe7dpNbsIwEIbhniRHyzU4ARJXQGKB1HXFPls27BHiBr5G6k/tuINxmlDMn/ouHimOHZPNfBpHvIUQegCoiWABUB3BAqA6ggVAdU8TLO3m2LezZR8OXXEewOs4C5b1IfTN7D1aJt0qFny27hpd1M4+UojsNV7E6++x3qGN76Cx1jZau43iNYDndxIspa5BRd/Eol8vFC7HdP8apWAJh5+9fbDYPQCvIwXLb8WcB4HdUydR6mq01zzu1W66NG/BlD+nTsTCy7qSsY6lWe3S83PtEXZpbr7V+q85jlbAY6RgUbcy9ciTF7sFw34TwyBeKxh0nLL9bL3Na5x3LFODRe/puyc/Vqj4MMnHAO4jBYu6ACv8MaUQsi5F3YMPBpvX/j5o/hIsech4ebgZ/7sA7mMwWKxQ7VghNu+PIp4dS24VLKV9zVDoXNKJAahj0lEo7wbGugCCBfjfJn28zYPFf9fI18qtgmUoPPweHIWAx0vBIgqM0sdOFaeOOla0VuC+iH3Y3CpYNJeHmj7Q2hGMj7fAczgJFlFR53+QK3Un+Tq/ZixYbKznFE6XBIt/VvLgUJgMzQG4j7NgAYBrESwAqiNYAFRHsACojmABUFnoPwGimzao0O3EYQAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[var_strGentilico]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[var_strGentilico]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[StrConv(var_strGentilico,VbStrConv.ProperCase)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Gentílico: &quot;+var_strGentilico]" />
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[arg_outStrGentilico]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[var_strGentilico]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <Sequence DisplayName="sq_Prefeito" sap:VirtualizedContainerService.HintSize="725,583" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NGetText DisplayName="Get Text Prefeito" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NGetText_6" ScopeIdentifier="4f3188bf-7aa6-410e-b4dd-5254634c294f" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/divisa-nova/panorama" DesignTimeRectangle="273, 290, 560, 16" ElementType="Text" FriendlyName="'JOSE LUIZ DE FIGUEIREDO'" FullSelectorArgument="&lt;webctrl parentid='dados' tag='P' aaname='*' idx='3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='dados' tag='P' /&gt;" Guid="3407abea-ac03-4a1c-b14f-f33231a971bb" InformativeScreenshot="ccca6d5c17f2a98f7cb48dd11bda7009.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Cidades@ | Minas Gerais | * | Panorama' /&gt;" SearchSteps="FuzzySelector">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="273, 274, 560, 16" FriendlyName="'Prefeito'" FullSelectorArgument="&lt;webctrl idx='3' tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H3' aaname='                 Prefeito             ' check:text='Prefeito' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAjQAAAAUCAYAAACauKccAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGrSURBVHhe7doxTuNAFIDhPUmOlmtwgkhcYSUKJGpEnzYNPUK5wVzD6ydlrGHisROyzchf8UnEvEcof834T0ppAADomaABALonaACA7gkaAKB7ggYA6N4UNF+j3fNx2D39vfL18Xa1eI/ybx9GKX1ezZT2H+fh9TnmzsPhlKaf52YBAK6CJp3efwwc4/nT+0NR8/qdxpCJ/eWQmSNoAIA1q0ET4sTk+BJRcTk9GeMmIidOXPJ8hEd5qtN6nsOoNT99xxgxh9N5+n15slPu7uP59/h/X3YBgO35VdDUERGBUQZHnMjs40TmMlOf0KzN56CZu3KKz+X3158BgO1ZDZqIjV3ExuV5GRtLe2UElUFzy3wraPJuff21e/mcdgGA7bn7peA6aPI7NnN7c0Fzy3wraPLuUgwBANtz05VTqRU0S3tzQbM0L2gAgHs8HDSta6DS3JXT0nwraFq7rpwAYNseDppQv5hbh0cZNLfMt4Jmbrf+DABsz38Jmvy8fB+mPEWpg2ZtvvyOfM1UR0zeEzMAwBQ0AAC9EjQAQPcEDQDQPUEDAHRP0AAAnUvDPygo0pp689kwAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[var_strPrefeito]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_20">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[var_strPrefeito]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[StrConv(var_strPrefeito.ToLower, VbStrConv.ProperCase)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Prefeito: &quot;+var_strPrefeito]" />
+              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_11">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[arg_outStrPrefeito]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[var_strPrefeito]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-8, -8, 1936, 1066" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="daf12bedd05a21c1a39218bcbb196af6.png" Selector="&lt;html app='chrome.exe' url='https://cidades.ibge.gov.br/brasil/mg/*' /&gt;" Url="https://cidades.ibge.gov.br/brasil/mg/" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>

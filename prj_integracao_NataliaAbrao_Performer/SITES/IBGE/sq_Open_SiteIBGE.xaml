@@ -1,0 +1,186 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="wf_OpenSiteIBGE" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1139,1901" sap2010:WorkflowViewState.IdRef="wf_OpenSiteIBGE_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="33">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="wf_OpenSiteIBGE" sap:VirtualizedContainerService.HintSize="1002,1836" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="var_intTentativas" />
+      <Variable x:TypeArguments="x:Boolean" Name="var_booSiteCarregou" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="Assign 0" sap:VirtualizedContainerService.HintSize="960,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[var_intTentativas]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InterruptibleDoWhile Condition="[var_booSiteCarregou = false and var_intTentativas &lt;3]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="960,1172" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+      <ui:InterruptibleDoWhile.Body>
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="924,1007" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard AttachMode="SingleWindow" CloseMode="Never" DisplayName="Use Browser Chrome: https://cidades.ibge.gov.br" sap:VirtualizedContainerService.HintSize="882,915" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="IfNotOpen" ScopeGuid="213efa8c-a80a-4a47-9bbb-7f320b1a0e45" Version="V1" WindowResize="Maximize">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="848,699" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NCheckState DisplayName="Check App Site Carregou" Exists="[var_booSiteCarregou]" sap:VirtualizedContainerService.HintSize="806,605" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="213efa8c-a80a-4a47-9bbb-7f320b1a0e45" Timeout="3" Version="V1">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="sq_SiteCarregou" sap:VirtualizedContainerService.HintSize="376,185" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Site IBGE carregado com sucesso&quot;]" />
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="sq_SiteNaoCarregou" sap:VirtualizedContainerService.HintSize="376,389" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="Chrome" />
+                        <Delay DisplayName="Delay 3s" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                        <Assign DisplayName="Assign +1" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_3">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[var_intTentativas]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[var_intTentativas + 1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/" DesignTimeRectangle="8, 140, 170, 48" ElementType="Icon" FriendlyName="'IMG'" FullSelectorArgument="&lt;webctrl aaname='Logotipo do IBGE' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Logotipo do IBGE' tag='IMG' type='' /&gt;" Guid="cdee7d03-d711-4163-8b53-4e50ac16b971" ImageBase64="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" InformativeScreenshot="502ccd4b61f9d471796f8c1db39ff015.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br' /&gt;" SearchSteps="FuzzySelector">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="281, 158, 110, 16" ElementType="Text" FriendlyName="'Página Inicial'" FullSelectorArgument="&lt;webctrl aaname='Página Inicial' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Página Inicial' tag='A' type='' check:text='Página Inicial' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHIAAAAUCAYAAABRcGk6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMzSURBVGhD7ZdBSxtREMf3k+Q7ePMD9LTgxVNP/QK5CbJYCvUkPQShYAKRBhJEkaBYswchWEgJCYJdmtaD0EqbativMZ1ZO+lk8nbfGo2SuIc/5L2ZnX0zv33zXpwwDCHT7CsDOSfKQM6JrCC//A6h1TqD8OYyGjeCK2i0OtC/OB/zzfR0SgS5920AufV9yHllKGyUIfx5DrkPZ9H44mjH+MxDykc5jgf+qmO0Z/qvWJCFzhXk1mpQLpThIAgQaB3yr8uQe7c7MUgG4zjOmELfG/P3fHxmAojOqj81+LQmj9Yb+mM2k9xSD4pL5N8bs0lxbUx1MEnnOAayj8rXv8ICwjrYrsDbZgD5NxVotk9gcfMkgngfkC4tNiiOzBcDSsIFnUQvSE7+KXRXkNNSIsgfgxCWt9uwiKCa9V0EettGSS6q26zDcrUTjVvVCj7za/hsGsWBJNHCeiWEib97NF4qjuxYtpnsxZKHcdH+L65MMtoR+Fv6y1jszzZS0m7WIG3x9Y7kj1b76h1pq0EsyBZeahY2GvByDSF9boC7dTqEyKJd2typwcoxnpVeBfa2EObN92Ewm9KA5ATkIqkYLiYiQXFx2F/bJUgqAheIQMTFYrv01zKBTIovQWpYcix/p62BEaRbO4eVdQTVPY2AaohS5U28/HzC3YpnaHefduZtDJviQOrktegr5h1nimGCI0FKULqYWja7CWRSfGnXvlK298oa0DgWZB/banhzPbyV2kRnZP8PPjO4HgaziRfLrULKlAAtlu0MihLyKCFxRiUlmRYk+dnWQ7oPSF18qbh1mWrA80aQLA2y8L4GhepHeFE4HJl/yMuOFi+eCyBBPTRIBshw4grKeiyQSTVg+51Ahu3DaP7V0eXI/LRAmnxkEib7pK2VzyIJTRdU6zFaqynHmQQpC8FjDYoLkuayYwPJt0Ee006YBkhtk++XNu3H4zu11oUq3UhTgDyeXmulYlExSbR4H/0pEVPBo/aDfz9ku00Lksb0pY/8HcB5ii2LJHUfkDTW7+P36OdsNbCCnEVRcfS5+dw0cyD1l0vSX+dz1EzuSNl2ZHt6zpqL1popAzknCuEv7wDQoZZrRFEAAAAASUVORK5CYII=" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="-8, -8, 1936, 1066" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="daa254eb217dc6d2602d4f98d68f06ae.png" Selector="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br'/&gt;" Url="https://cidades.ibge.gov.br/" />
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+        </Sequence>
+      </ui:InterruptibleDoWhile.Body>
+    </ui:InterruptibleDoWhile>
+    <If Condition="[var_booSiteCarregou = False]" DisplayName="Se o site não carregou" sap:VirtualizedContainerService.HintSize="960,432" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Erro ao carregar Site do IBGE&quot;]" />
+          <Throw Exception="[new Exception(&quot;Erro de aplicação&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>
