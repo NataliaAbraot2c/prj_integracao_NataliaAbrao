@@ -1,13 +1,13 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="arg_inDtCidadesGeral" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="Argumento de entrada com a tabela geral das Cidades." Name="arg_inDtCidadesGeral" Type="InArgument(sd:DataTable)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="arg_inDicConfig" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="arg_inQiTransactionItem" Type="InArgument(ui:QueueItem)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1053,837</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>832,835</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="54">
@@ -76,10 +76,9 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>System.Data.Entity</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Pesquisa a cidade, extrai os dados e armazena na tabela" DisplayName="Process" sap:VirtualizedContainerService.HintSize="376,763" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Pesquisa a cidade, extrai os dados e armazena na tabela final." DisplayName="Process" sap:VirtualizedContainerService.HintSize="376,763" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="var_strPopulacaoEstimada" />
       <Variable x:TypeArguments="x:String" Name="var_strPopulacaoUltimo" />
@@ -125,33 +124,15 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Adiciona o item a Tabela Final" DisplayName="Invoke sq_Export_ExcelCidades workflow" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Units\sq_Add_LinhaTabela.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="arg_inDtCidadesGeral">
-          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="arg_inDtCidadesGeral" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPopulacaoEstimada">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="var_strPopulacaoEstimada" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrDensidade">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="var_strDensidade" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPopulacaoUltimo">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="var_strPopulacaoUltimo" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCodMunicipio">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="var_strCodMunicipio" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrGentilico">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="var_strGentilico" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPrefeito">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="var_strPrefeito" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCodCidade">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="var_strCodCidade" />
-        </InArgument>
-        <InArgument x:TypeArguments="ui:QueueItem" x:Key="arg_inQiTransactionItem">
-          <mva:VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="arg_inQiTransactionItem" />
-        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="arg_inDtCidadesGeral">[arg_inDtCidadesGeral]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPopulacaoEstimada">[var_strPopulacaoEstimada]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrDensidade">[var_strDensidade]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPopulacaoUltimo">[var_strPopulacaoUltimo]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCodMunicipio">[var_strCodMunicipio]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrGentilico">[var_strGentilico]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPrefeito">[var_strPrefeito]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCodCidade">[var_strCodCidade]</InArgument>
+        <InArgument x:TypeArguments="ui:QueueItem" x:Key="arg_inQiTransactionItem">[arg_inQiTransactionItem]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">

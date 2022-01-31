@@ -14,7 +14,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1046,1269</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1794,1269</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SetTransactionStatus_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="26">
@@ -159,26 +159,13 @@
                   <av:Size x:Key="ShapeSize">200,66</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Increment transaction index and reset retries" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_12">
+              <Sequence DisplayName="Increment transaction index and reset retries" sap:VirtualizedContainerService.HintSize="304,351" sap2010:WorkflowViewState.IdRef="Sequence_12">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign sap2010:Annotation.AnnotationText="Increment the TransactionNumber to get the next transaction to be processed." DisplayName="Assign io_TransactionNumber" sap:VirtualizedContainerService.HintSize="262.4,104" sap2010:WorkflowViewState.IdRef="Assign_7">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[io_TransactionNumber]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">[io_TransactionNumber+1]</InArgument>
-                  </Assign.Value>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Assign>
-                <Assign sap2010:Annotation.AnnotationText="Reset the counter of retries to allow the next transaction to be retried the correct amount of times." DisplayName="Assign io_RetryNumber" sap:VirtualizedContainerService.HintSize="262.4,120" sap2010:WorkflowViewState.IdRef="Assign_8">
+                <Assign sap2010:Annotation.AnnotationText="Reset the counter of retries to allow the next transaction to be retried the correct amount of times." DisplayName="Assign io_RetryNumber" sap:VirtualizedContainerService.HintSize="262,117" sap2010:WorkflowViewState.IdRef="Assign_8">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[io_RetryNumber]</OutArgument>
                   </Assign.To>
@@ -191,7 +178,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </Assign>
-                <Assign sap2010:Annotation.AnnotationText="Reset the counter of consecutive system exceptions." DisplayName="Assign io_ConsecutiveSystemExceptions" sap:VirtualizedContainerService.HintSize="262.4,104" sap2010:WorkflowViewState.IdRef="Assign_9">
+                <Assign sap2010:Annotation.AnnotationText="Reset the counter of consecutive system exceptions." DisplayName="Assign io_ConsecutiveSystemExceptions" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_9">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[io_ConsecutiveSystemExceptions]</OutArgument>
                   </Assign.To>
@@ -281,7 +268,7 @@
                   <av:Size x:Key="ShapeSize">200,153</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, the transaction item's status is updated as Failed (Exception Type: Application)." DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="480,1547" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, the transaction item's status is updated as Failed (Exception Type: Application)." DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="200,153" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Boolean" Name="QueueRetry" />
                   <Variable x:TypeArguments="x:String" Name="ScreenshotPath" />

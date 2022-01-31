@@ -1,12 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="wf_AddItemFila" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="arg_inDicConfig" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="arg_inDrTransactionItem" Type="InArgument(sd:DataRow)" />
+    <x:Property sap2010:Annotation.AnnotationText="Argumento de entrada com a DataRow a ser envidada para fila." Name="arg_inDrTransactionItem" Type="InArgument(sd:DataRow)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1046,837</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1383,837</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>wf_AddItemFila_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -66,7 +66,6 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Data.Entity</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Adiciona os itens da Tabela a fila no Orchestrador&#xA;" DisplayName="sq_Add_ItemFila" sap:VirtualizedContainerService.HintSize="376,418" sap2010:WorkflowViewState.IdRef="Sequence_1">
